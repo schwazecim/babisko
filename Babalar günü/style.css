@@ -1,0 +1,342 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Roboto', sans-serif;
+    background: linear-gradient(135deg, #1e3c72 0%, #2a5298 100%);
+    min-height: 100vh;
+    min-height: 100dvh; /* iPhone için daha iyi yükseklik desteği */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    overflow: hidden;
+    position: relative;
+}
+
+.stars, .twinkling {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    width: 100%;
+    height: 100%;
+    display: block;
+}
+
+.stars {
+    background: #000 url('https://i.imgur.com/YKY28eT.png') repeat top center;
+    z-index: -2;
+}
+
+.twinkling {
+    background: transparent url('https://i.imgur.com/XYMF4ca.png') repeat top center;
+    z-index: -1;
+    animation: move-twink-back 200s linear infinite;
+}
+
+@keyframes move-twink-back {
+    from {background-position: 0 0;}
+    to {background-position: -10000px 5000px;}
+}
+
+/* Giriş Ekranı Stilleri */
+.entrance-screen {
+    text-align: center;
+    color: white;
+    padding: 20px;
+    animation: fadeIn 1s ease-in;
+    width: 100%;
+    max-width: 430px; /* iPhone 16 Pro Max genişliği */
+    margin: 0 auto;
+}
+
+.entrance-screen h2 {
+    font-family: 'Dancing Script', cursive;
+    font-size: 3.5em;
+    margin-bottom: 20px;
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
+}
+
+.entrance-screen p {
+    font-size: 1.8em;
+    margin-bottom: 40px;
+    text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.3);
+}
+
+.growing-button {
+    background: linear-gradient(45deg, #ff4b4b, #ff7676);
+    border: none;
+    padding: 20px 60px;
+    font-size: 1.5em;
+    color: white;
+    border-radius: 50px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    box-shadow: 0 5px 15px rgba(255, 75, 75, 0.4);
+    font-family: 'Roboto', sans-serif;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    position: relative;
+    z-index: 1000;
+    width: 80%;
+    max-width: 300px;
+}
+
+.growing-button:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 8px 20px rgba(255, 75, 75, 0.6);
+}
+
+.growing-button:active {
+    transform: translateY(1px);
+}
+
+.container {
+    padding: 20px;
+    position: relative;
+    z-index: 1;
+    width: 100%;
+    max-width: 430px; /* iPhone 16 Pro Max genişliği */
+    margin: 0 auto;
+}
+
+.card {
+    background: rgba(255, 255, 255, 0.95);
+    padding: 40px;
+    border-radius: 20px;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+    text-align: center;
+    width: 100%;
+    animation: fadeIn 1.5s ease-in;
+    position: relative;
+    overflow: hidden;
+}
+
+.ribbon {
+    position: absolute;
+    top: 0;
+    right: 0;
+    width: 150px;
+    height: 150px;
+    overflow: hidden;
+}
+
+.ribbon:before,
+.ribbon:after {
+    content: '';
+    position: absolute;
+    border-top: 5px solid #9b1818;
+    border-left: 5px solid transparent;
+    border-right: 5px solid transparent;
+    bottom: 0;
+}
+
+.ribbon:before {
+    left: 0;
+}
+
+.ribbon:after {
+    right: 0;
+}
+
+.ribbon span {
+    position: absolute;
+    display: block;
+    width: 225px;
+    padding: 8px 0;
+    background-color: #ff4b4b;
+    box-shadow: 0 5px 10px rgba(0,0,0,.1);
+    color: #fff;
+    text-shadow: 0 1px 1px rgba(0,0,0,.2);
+    text-transform: uppercase;
+    text-align: center;
+    left: -25px;
+    top: 30px;
+    transform: rotate(45deg);
+}
+
+h1 {
+    font-family: 'Dancing Script', cursive;
+    color: #1e3c72;
+    font-size: 3.5em;
+    margin-bottom: 30px;
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.message {
+    font-size: 1.4em;
+    color: #333;
+    margin: 15px 0;
+    opacity: 0;
+    animation: slideUp 0.5s ease forwards;
+}
+
+.message:nth-child(2) { animation-delay: 0.2s; }
+.message:nth-child(3) { animation-delay: 0.4s; }
+.message:nth-child(4) { animation-delay: 0.6s; }
+.message:nth-child(5) { animation-delay: 0.8s; }
+.message:nth-child(6) { animation-delay: 1s; }
+
+.signature {
+    font-family: 'Dancing Script', cursive;
+    font-size: 2em;
+    color: #1e3c72;
+    margin-top: 30px;
+    opacity: 0;
+    animation: fadeIn 1s ease forwards 1.2s;
+}
+
+.heart {
+    position: relative;
+    width: 60px;
+    height: 60px;
+    margin: 20px auto;
+    animation: heartbeat 1.5s ease-in-out infinite;
+}
+
+.heart:before,
+.heart:after {
+    content: "";
+    position: absolute;
+    left: 30px;
+    top: 0;
+    width: 30px;
+    height: 48px;
+    background: #ff4b4b;
+    border-radius: 30px 30px 0 0;
+    transform: rotate(-45deg);
+    transform-origin: 0 100%;
+}
+
+.heart:after {
+    left: 0;
+    transform: rotate(45deg);
+    transform-origin: 100% 100%;
+}
+
+.floating-hearts {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    top: 0;
+    left: 0;
+    pointer-events: none;
+}
+
+.floating-heart {
+    position: absolute;
+    font-size: 24px;
+    color: #ff4b4b;
+    animation: float 6s ease-in-out infinite;
+    opacity: 0;
+}
+
+.floating-heart:nth-child(1) {
+    left: 10%;
+    animation-delay: 0s;
+}
+
+.floating-heart:nth-child(2) {
+    left: 50%;
+    animation-delay: 2s;
+}
+
+.floating-heart:nth-child(3) {
+    left: 80%;
+    animation-delay: 4s;
+}
+
+@keyframes float {
+    0% {
+        transform: translateY(100%) rotate(0deg);
+        opacity: 0;
+    }
+    20% {
+        opacity: 1;
+    }
+    80% {
+        opacity: 1;
+    }
+    100% {
+        transform: translateY(-100%) rotate(360deg);
+        opacity: 0;
+    }
+}
+
+@keyframes fadeIn {
+    from { opacity: 0; }
+    to { opacity: 1; }
+}
+
+@keyframes slideUp {
+    from {
+        opacity: 0;
+        transform: translateY(20px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+@keyframes heartbeat {
+    0% { transform: scale(1); }
+    14% { transform: scale(1.1); }
+    28% { transform: scale(1); }
+    42% { transform: scale(1.1); }
+    70% { transform: scale(1); }
+}
+
+/* iPhone 16 Pro Max için özel medya sorgusu */
+@media screen and (max-width: 430px) {
+    .entrance-screen {
+        padding: 15px;
+    }
+
+    .entrance-screen h2 {
+        font-size: 3em;
+    }
+
+    .entrance-screen p {
+        font-size: 1.5em;
+        margin-bottom: 30px;
+    }
+
+    .growing-button {
+        padding: 15px 40px;
+        font-size: 1.3em;
+        width: 90%;
+    }
+
+    .card {
+        padding: 30px 20px;
+    }
+
+    h1 {
+        font-size: 3em;
+    }
+
+    .message {
+        font-size: 1.2em;
+    }
+
+    .signature {
+        font-size: 1.8em;
+    }
+
+    .ribbon {
+        width: 120px;
+        height: 120px;
+    }
+
+    .ribbon span {
+        width: 180px;
+        font-size: 0.8em;
+        left: -25px;
+        top: 25px;
+    }
+} 

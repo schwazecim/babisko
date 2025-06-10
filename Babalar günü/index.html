@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Babam İçin Özel</title>
+    <link rel="stylesheet" href="style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Dancing+Script:wght@700&family=Roboto:wght@300;400;700&display=swap" rel="stylesheet">
+</head>
+<body>
+    <div class="stars"></div>
+    <div class="twinkling"></div>
+    
+    <!-- Giriş Ekranı -->
+    <div class="entrance-screen" id="entranceScreen">
+        <h2>Babam İçin Özel Mesajım</h2>
+        <p>Görmek ister misin?</p>
+        <button id="growingButton" class="growing-button">Evet, Göster!</button>
+    </div>
+
+    <!-- Ana İçerik -->
+    <div class="container" id="mainContent" style="display: none;">
+        <div class="card">
+            <div class="ribbon"></div>
+            <h1>Babam İçin</h1>
+            <div class="heart"></div>
+            <p class="message">Hayatımın en değerli varlığı,</p>
+            <p class="message">Her gün yanımda olduğun için,</p>
+            <p class="message">Bana öğrettiğin her şey için,</p>
+            <p class="message">Ve beni her zaman desteklediğin için</p>
+            <p class="message">Teşekkür ederim babacığım.</p>
+            <p class="message">Canım babam</p>
+            <p class="signature">Seni çok seviyorum!</p>
+            <div class="floating-hearts">
+                <div class="floating-heart">❤</div>
+                <div class="floating-heart">❤</div>
+                <div class="floating-heart">❤</div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        const button = document.getElementById('growingButton');
+        const entranceScreen = document.getElementById('entranceScreen');
+        const mainContent = document.getElementById('mainContent');
+        let scale = 1;
+        let growing = false;
+
+        button.addEventListener('click', function() {
+            if (!growing) {
+                growing = true;
+                const growInterval = setInterval(() => {
+                    scale += 0.2;
+                    button.style.transform = `scale(${scale})`;
+                    
+                    if (scale >= 10) {
+                        clearInterval(growInterval);
+                        button.style.transform = 'scale(10)';
+                        button.style.opacity = '0';
+                        
+                        setTimeout(() => {
+                            entranceScreen.style.display = 'none';
+                            mainContent.style.display = 'block';
+                            mainContent.style.animation = 'fadeIn 1s ease-in';
+                        }, 300);
+                    }
+                }, 30);
+            }
+        });
+    </script>
+</body>
+</html> 
